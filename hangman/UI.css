@@ -8,6 +8,10 @@ $blue: #8DDBE0;
 $base-color:$grey-blue;*/
 body {
     background-color: #9BC4BC;
+    width: 50%;
+    border: 3px ;
+    padding: 10px;
+    margin: auto;
 }
 
 button {
