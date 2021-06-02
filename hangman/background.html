@@ -7,14 +7,18 @@
 </head>
 <body>
 
+<!--heading-->
 <h1 id="main-heading"><center>Hangman!</center></h1>
-<script text="game.js" src="http://127.0.0.1:8887/hangman/">
-    <script src></script>
+<script text="game.js" src="game.js"></script>
+
 <!--add the hangman drawing-->
 <div id="hangmanContainer">
     <canvas id="hangman" width="200" height="300"></canvas>
 </div>
-<p><center>"Choose a Letter"</center></p>
+<center>
+<button id="StartGame" onclick="startGame">StartGame</button>
+</center>
+<p><center>Choose a Letter</center></p>
 <center>
     <button value="A" onclick="add_element_to_array()">A</button>
 <button type="button">B</button>
