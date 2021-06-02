@@ -1,0 +1,34 @@
+/*variables
+
+$black: #090909;
+$grey: #4B5043;
+$grey-blue: #9BC4BC;
+$lightBlue: #D3FFE9;
+$blue: #8DDBE0;
+$base-color:$grey-blue;*/
+body {
+    background-color: #9BC4BC;
+}
+
+button {
+    color: black;
+    background-color: #D3FFE9;
+    padding: 15px 32px;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    text-decoration-color: black;
+}
+
+h1 {
+    font-family: verdana;
+    font-size: 40px;
+}
+
+p{
+    font-family: veranda;
+    font-size: 40px;
+    font-weight: bold;
+}
