@@ -22,7 +22,13 @@ button {
     text-decoration-color: black;
 }
 
-p {
+h1 {
     font-family: verdana;
-    font-size: 20px;
+    font-size: 40px;
+}
+
+p{
+    font-family: veranda;
+    font-size: 40px;
+    font-weight: bold;
 }

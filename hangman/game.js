@@ -6,8 +6,12 @@ consol.log(word);
 
 
 //get a guess from the player
+var guesses = []; //empty array to hold guesses
 
-
-   
-
-//check if the letter is valid
+function add_element_to_array()
+{
+    guesses[x] = document.getElementById("button").value;
+    alert("Element: " + guesses[x] + " Added at index " + x);
+    x++;
+    document.getElementById("button").value = "";
+}
