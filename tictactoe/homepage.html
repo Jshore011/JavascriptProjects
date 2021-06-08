@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" 
 <head>
     <meta charset="UTF-8">
     <title>Tic Tac Toe</title>
@@ -7,45 +7,22 @@
             href ='gameboard.css'>
 </head>
 <body>
-
-
-<div class="container"></div>
-<h1 id="main-heading"><center>Death Metal Tic Tac Toe</center></h1>
-
-
-<br>
-<br>
-<br>
-<br>
-<div id="choose-x-o-box">
-    <p>Choose your weapon:</p>
-    <br>
-    <br>
-    <center>
-    <button id="x-button" onClick="setXO('X')"><img src="https://img.favpng.com/2/3/24/hazard-symbol-stock-photography-skull-and-crossbones-png-favpng-X9sVBEti8UhVKJen1yqjpjtPj.jpg" alt="" id="skull"></i></button>
-    <button id="o-button" onClick="setXO('O')"><img src="https://image.freepik.com/free-vector/pink-skull-love_92863-493.jpg" alt="" id="reaper"></i></button>
-    </center>
-</div>
-<br>
-<br>
-<br>
-<div class = "gameboard">
-    <div id="block_0" class="block"></div>
-    <div id="block_1" class="block"></div>
-    <div id="block_2" class="block"></div>
-    <div id="block_3" class="block"></div>
-    <div id="block_4" class="block"></div>
-    <div id="block_5" class="block"></div>
-    <div id="block_6" class="block"></div>
-    <div id="block_7" class="block"></div>
-    <div id="block_8" class="block"></div>
-</div>
-
-
-<div id="tie">
-    <p>It's a tie!  Sucks to Suck.</p>
-    <p id= "reset" onClick="reset()">Reset</p>
-</div>
-
+    <section>
+        <h1 id="main-heading"><center>Death Metal Tic Tac Toe</center></h1>
+        <div class = "gameboard">
+          <div id="block_0" class="block"></div>
+          <div id="block_1" class="block"></div>
+          <div id="block_2" class="block"></div>
+          <div id="block_3" class="block"></div>
+          <div id="block_4" class="block"></div>
+          <div id="block_5" class="block"></div>
+          <div id="block_6" class="block"></div>
+          <div id="block_7" class="block"></div>
+          <div id="block_8" class="block"></div>
+        </div>
+        <h2 class ="gameStatus"></h2>
+        <button class="gameRestart">Restart Game</button>
+    </section>
+<script src="gameplay.js"></script>
 </body>
 </html>
