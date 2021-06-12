@@ -1,13 +1,15 @@
-/* stores the game status element for ease of access*/
-const displayStatus = document.querySelector('.gameStatus');
+const statusDisplay = document.querySelector('.gameStatus');
 
-/*variable declaration*/
-//sets game status to true
 let active = true;
-//sets current player to X
-let curPlayer = "X";
-//starts the gameboard off empty
-let state = ["", "", "", "", "", "", "", "", ""];
+let currentPlayer = "X";
+let gameState = ["", "", "", "", "", "", "", "", ""];
+
+const win = () => `Player ${currentPlayer} has won!`;
+const draw = () => `Its a Tie!`;
+const turn = () => `It's ${currentPlayer}'s turn`;
+
+statusDisplay.innerHTML = turn();
+
 const winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -18,44 +20,68 @@ const winningConditions = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-const winMessage =()=> 'Player ${curPlayer} has won!';
-const drawMessage=()=> 'Its a tie!';
-const loserMessage=()=> 'You Lose. Sucks to Suck!';
-const currPlayTurn=()=> 'Its ${curPlayer}s turn!';
 
-displayStatus.innerHTML=currPlayTurn();
-function handleCellPlayed(clickedBlock, clickedBlockIndex) {
-
-    state[clickedBlockIndex] = curPlayer;
-    clickedBlock.innerHTML = curPlayer;
-
+function blockPlayed(clickedBlock, clickedBlockIndex) {
+    gameState[clickedBlockIndex] = currentPlayer;
+    clickedBlock.innerHTML = currentPlayer;
 }
-function handlePlayerChange(){
-    curPlayer = curPlayer === "X" ? "O" : "X";
-    displayStatus.innerHTML = currPlayTurn();
+
+function playerChange() {
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    statusDisplay.innerHTML = turn();
 }
-function handleResultValidation(){
 
-}
-function handleCellClick(clickedBlockEvent) {
-    const clickedBlock = clickedBlockEvent.target;
+function gameValidation() {
+    let roundWon = false;
+    for (let i = 0; i <= 7; i++) {
+        const winCondition = winningConditions[i];
+        let a = gameState[winCondition[0]];
+        let b = gameState[winCondition[1]];
+        let c = gameState[winCondition[2]];
+        if (a === '' || b === '' || c === '') {
+            continue;
+        }
+        if (a === b && b === c) {
+            roundWon = true;
+            break
+        }
+    }
 
-    const clickedBlockIndex = clickedBlock.getAttribute('id');
-
-    if (state[clickedBlockIndex] !== "" || !active){
+    if (roundWon) {
+        statusDisplay.innerHTML = win();
+        active = false;
         return;
     }
 
-    handleCellPlayed(clickedBlock, clickedBlockIndex);
-    handleResultValidation();
+    let roundDraw = !gameState.includes("");
+    if (roundDraw) {
+        statusDisplay.innerHTML = draw();
+        active = false;
+        return;
+    }
+
+    playerChange();
 }
-function handleRestartGame() {
+
+function blockClick(clickedBlockEvent) {
+    const clickedBlock = clickedBlockEvent.target;
+    const clickedBlockIndex = parseInt(clickedBlock.getAttribute('data-cell-index'));
+
+    if (gameState[clickedBlockIndex] !== "" || !active) {
+        return;
+    }
+
+    blockPlayed(clickedBlock, clickedBlockIndex);
+    gameValidation();
+}
+//restarts game
+function restartGame() {
     active = true;
-    curPlayer = "X";
-    state = ["", "", "", "", "", "", "", "", ""];
-    displayStatus.innerHTML = currPlayTurn();
-    document.querySelectorAll('.block').forEach(block.innerHTML ="");
+    currentPlayer = "X";
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    statusDisplay.innerHTML = turn();
+    document.querySelectorAll('.block').forEach(block => block.innerHTML = "");
 }
-/*event listeners for game cells*/
-document.querySelectorAll('.block').forEach(block => block.addEventListener('click', handleCellClick));
-document.querySelector('.gameRestart').addEventListener('click', handleRestartGame);
+
+document.querySelectorAll('.block').forEach(block => block.addEventListener('click', blockClick));
+document.querySelector('.gameRestart').addEventListener('click', restartGame);
